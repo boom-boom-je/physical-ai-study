@@ -1,0 +1,29 @@
+# 개인 문서 (공개 저장소에 올리지 않음)
+_private/
+CLAUDE.local.md
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# 학습 산출물 (용량이 큰 것)
+runs/
+logs/
+tb_logs/
+wandb/
+models/
+checkpoints/
+*.zip
+*.pt
+*.pth
+*.ckpt
+
+# 데이터셋
+data/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store

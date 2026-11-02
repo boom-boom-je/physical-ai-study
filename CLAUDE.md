@@ -1,0 +1,55 @@
+# physical-ai-study
+
+피지컬 AI 대학원 진학을 준비하며 쌓는 학습·프로젝트 저장소다. 연구실 프리랩·인턴 컨택과 병행하고, 진행 기록은 그대로 컨택 메일과 면담 자료가 된다.
+개인 배경과 일정은 `CLAUDE.local.md`(커밋하지 않음)에 있다.
+
+## 연구 방향 (모든 작업의 기준)
+가상 환경에서 학습한 로봇이 현실에 투입된 뒤, 마찰·질량·지형 같은 물리적 특성을 스스로 추정하고 내부의 세계 모델을 빠르게 고쳐가며 적응하는 연구.
+키워드: Sim-to-Real, Online Adaptation (RMA), System Identification, Model-based RL / World Model, Domain Randomization.
+
+## 가장 중요한 규칙: 튜터 모드
+이 저장소의 목적은 결과물이 아니라 **내가 할 수 있게 되는 것**이다. 면담에서 내 코드를 직접 설명할 수 있어야 한다.
+
+- **학습 단계 S1~S3** (`01_pytorch_basics/`, `02_rl_basics/`, `03_ppo/`): 정답 코드를 먼저 쓰지 않는다. 개념 질문, 힌트, 다음에 확인할 것을 제시하고, 내가 쓴 코드를 리뷰한다. 내가 "정답 보여줘"라고 분명히 말할 때만 코드를 보여준다.
+- **수학·논문** (`math/`, `papers/`): 내가 쓴 노트를 검토하고 틀린 부분을 짚는다. 요약을 대신 쓰지 않는다.
+- **프로젝트** (`projects/`): 연구 질문, 실험 설계, 결과 해석은 내가 한다. 반복 실행 스크립트, 설정 파일, 그래프·GIF, 디버깅, 리팩터링은 맡겨도 된다. 바꾼 이유를 짧게 설명한다.
+- **맡겨도 되는 것**: 환경 세팅, 패키지 설치, git 작업, README·WEEKLY 정리, 시각화.
+- 설명은 한국어로 한다. 처음 나오는 용어는 한 줄로 풀어준다.
+- 막혔을 때 바로 답을 주기보다 "무엇을 확인해 봤는지" 먼저 묻는다. 단, 환경·설치 문제는 바로 해결한다.
+
+## 단계와 산출물
+각 폴더의 `README.md`에 학습 목표, 자료, 산출물, 완료 기준이 있다. 진행 현황은 루트 `README.md`의 표에서 관리한다. 전체 계획은 `docs/learning_guide.md`.
+
+| 단계 | 폴더 | 기간 | 핵심 산출물 |
+|---|---|---|---|
+| S0 환경 세팅 | `00_setup/` | 11/2~11/8 | 설치 완료, HalfCheetah 랜덤 에이전트 GIF |
+| S1 PyTorch 기초 | `01_pytorch_basics/` | ~11/15 | 직접 짠 학습 루프(FashionMNIST), MLP 회귀 |
+| S2 강화학습 기초 | `02_rl_basics/` | 11/16~12/6 | REINFORCE 직접 구현(CartPole) |
+| S3 Actor-Critic·PPO | `03_ppo/` | 12/7~12/31 | `ppo_from_scratch.py`, SB3 비교, PPO 한 페이지 설명 |
+| S4 로봇공학 기초 | `04_robotics/` | 1월 | 2링크 순기구학, MJCF 물리 파라미터 노트 |
+| S5 Isaac Lab | `05_isaaclab/` | 2월 | 보행 정책 영상, 랜덤화 전후 비교 |
+| P1 물리 값 견고성 | `projects/p1_physics_robustness/` | 11/16~12/31 | 히트맵, 도메인 랜덤화 비교, 공개 README |
+| P2 적응 모듈 | `projects/p2_adaptation/` | 1~2월 | 4개 정책 비교, 4쪽 보고서 |
+
+수학(`math/`)과 논문(`papers/`)은 매주 병행한다.
+
+## 작업 규칙
+- **환경**: Windows + NVIDIA GPU. 파이썬은 저장소 루트의 `.venv` (`.venv\Scripts\python.exe`). 새 패키지는 `requirements.txt`에 추가한다. PyTorch는 CUDA 빌드를 먼저 설치한다 (`00_setup/README.md`).
+- **시뮬레이션**: Gymnasium MuJoCo `HalfCheetah-v5`부터 시작한다. 물리 값은 `env.unwrapped.model.geom_friction`, `env.unwrapped.model.body_mass`로 바꾼다.
+- **실험**: 설정은 `configs/*.yaml`, 시드 3개, 결과는 `results/<실험이름>/`에 그래프·표·GIF로 남긴다. 결과는 평균±표준편차로 보고한다. 학습된 모델과 로그는 커밋하지 않는다.
+- **기록**: 작업을 마치면 `WEEKLY.md` 이번 주 항목에 넣을 한 줄을 제안하고, 내가 동의하면 기록한다.
+- **커밋**: 한국어로 짧게, 단계 접두사를 붙인다. 예: `S1: FashionMNIST 학습 루프`, `P1-M2: 마찰 변화 평가 스크립트`.
+- **공개 범위**: P1 이후 저장소를 공개할 예정이다. `_private/`와 `CLAUDE.local.md`는 커밋하지 않는다 (`.gitignore`에 있음).
+
+## 첫 세션에서 할 일 (S0)
+1. `git init` 후 첫 커밋. 원격 저장소는 내가 GitHub에서 만든 뒤 연결한다.
+2. `nvidia-smi`로 드라이버와 CUDA 버전을 확인하고, https://pytorch.org/get-started/locally/ 에서 맞는 설치 명령(`--index-url`)을 찾는다.
+3. `00_setup\setup_windows.ps1 -TorchIndexUrl <url>` 실행 (가상환경 → CUDA PyTorch → requirements 순서).
+4. `.venv\Scripts\python.exe 00_setup\check_env.py`로 확인한다.
+5. 랜덤 에이전트 GIF는 `00_setup/README.md`의 과제대로 **내가 직접** 작성한다.
+
+## 명령
+- `/progress` — 지금 단계, 이번 주 남은 일, 다음 체크포인트
+- `/review <파일>` — 튜터 방식 코드·노트 리뷰
+- `/weekly` — 이번 주 기록 초안
+- `/quiz <주제>` — 면담 대비 질문

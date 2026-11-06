@@ -1,11 +1,13 @@
 # physical-ai-study
 
 피지컬 AI 대학원 진학을 준비하며 쌓는 학습·프로젝트 저장소다. 연구실 프리랩·인턴 컨택과 병행하고, 진행 기록은 그대로 컨택 메일과 면담 자료가 된다.
-개인 배경과 일정은 `CLAUDE.local.md`(커밋하지 않음)에 있다.
+개인 배경과 일정은 `CLAUDE.local.md`, 컨택 대상·현황은 `_private/contacts.md`에 있다 (둘 다 커밋하지 않음).
 
 ## 연구 방향 (모든 작업의 기준)
 가상 환경에서 학습한 로봇이 현실에 투입된 뒤, 마찰·질량·지형 같은 물리적 특성을 스스로 추정하고 내부의 세계 모델을 빠르게 고쳐가며 적응하는 연구.
 키워드: Sim-to-Real, Online Adaptation (RMA), System Identification, Model-based RL / World Model, Domain Randomization.
+
+계획에서 다루는 범위: 물리 값 견고성(P1) → 물리 값 추정·적응(P2) → 거친 지형 보행(S5). 세계 모델은 1월 말까지 논문으로 먼저 다루고, 그 뒤 P2에 작은 마일스톤(M5)으로 추가한다.
 
 ## 가장 중요한 규칙: 튜터 모드
 이 저장소의 목적은 결과물이 아니라 **내가 할 수 있게 되는 것**이다. 면담에서 내 코드를 직접 설명할 수 있어야 한다.
@@ -18,35 +20,32 @@
 - 막혔을 때 바로 답을 주기보다 "무엇을 확인해 봤는지" 먼저 묻는다. 단, 환경·설치 문제는 바로 해결한다.
 
 ## 단계와 산출물
-각 폴더의 `README.md`에 학습 목표, 자료, 산출물, 완료 기준이 있다. 진행 현황은 루트 `README.md`의 표에서 관리한다. 전체 계획은 `docs/learning_guide.md`.
+각 폴더의 `README.md`에 학습 목표, 자료, 산출물, 완료 기준이 있다. 단계 완료는 산출물에 더해 `/quiz` 1회(빠진 부분은 "내 답"에 보완)로 판단한다. 진행 현황은 루트 `README.md`의 표에서 관리한다. 전체 계획은 `docs/learning_guide.md`.
 
 | 단계 | 폴더 | 기간 | 핵심 산출물 |
 |---|---|---|---|
 | S0 환경 세팅 | `00_setup/` | 11/2~11/8 | 설치 완료, HalfCheetah 랜덤 에이전트 GIF |
 | S1 PyTorch 기초 | `01_pytorch_basics/` | ~11/15 | 직접 짠 학습 루프(FashionMNIST), MLP 회귀 |
 | S2 강화학습 기초 | `02_rl_basics/` | 11/16~12/6 | REINFORCE 직접 구현(CartPole) |
-| S3 Actor-Critic·PPO | `03_ppo/` | 12/7~12/31 | `ppo_from_scratch.py`, SB3 비교, PPO 한 페이지 설명 |
-| S4 로봇공학 기초 | `04_robotics/` | 1월 | 2링크 순기구학, MJCF 물리 파라미터 노트 |
-| S5 Isaac Lab | `05_isaaclab/` | 2월 | 보행 정책 영상, 랜덤화 전후 비교 |
-| P1 물리 값 견고성 | `projects/p1_physics_robustness/` | 11/16~12/31 | 히트맵, 도메인 랜덤화 비교, 공개 README |
-| P2 적응 모듈 | `projects/p2_adaptation/` | 1~2월 | 4개 정책 비교, 4쪽 보고서 |
+| S3 Actor-Critic·PPO | `03_ppo/` | 12/7~12/31 | `ppo_from_scratch.py`(이산 → 연속 행동), SB3 비교, PPO 한 페이지 설명 |
+| S4 로봇공학 기초 | `04_robotics/` | 1월 | 2링크 순기구학, PD 제어, MJCF 물리 파라미터 노트 |
+| S5 Isaac Lab | `05_isaaclab/` | 2월 | 보행 정책 영상(평지·거친 지형), 랜덤화 전후 비교 |
+| P1 물리 값 견고성 | `projects/p1_physics_robustness/` | 11/16~12/31 | 히트맵, 도메인 랜덤화 비교, 결과 README |
+| P2 적응 모듈 | `projects/p2_adaptation/` | 1~2월 | 4개 정책 비교, 4쪽 보고서, (추가 예정) M5 세계 모델 |
 
-수학(`math/`)과 논문(`papers/`)은 매주 병행한다.
+수학(`math/`)과 논문(`papers/`)은 매주 병행하고, 연구실 컨택은 상시 트랙으로 진행한다.
 
 ## 작업 규칙
-- **환경**: Windows + NVIDIA GPU. 파이썬은 저장소 루트의 `.venv` (`.venv\Scripts\python.exe`). 새 패키지는 `requirements.txt`에 추가한다. PyTorch는 CUDA 빌드를 먼저 설치한다 (`00_setup/README.md`).
+- **환경**: 학습·실행은 집 데스크탑(Windows, RTX 3070 Ti 8GB, RAM 32GB)에서 한다. 보조 노트북(NVIDIA GPU 없음)에서는 문서·계획 작업만 하고 설치·학습은 실행하지 않는다. 파이썬은 3.11, 저장소 루트의 `.venv` (`.venv\Scripts\python.exe`). 새 패키지는 `requirements.txt`에 추가한다. PyTorch·torchvision은 CUDA 빌드를 먼저 설치한다 (`00_setup/README.md`).
+- **브랜치**: 모든 작업은 `jay-study`에서 한다. 새 브랜치를 만들거나 다른 브랜치로 전환하지 않는다. `main`은 학습 시작 전 초기 상태를 보관하는 브랜치라 커밋·푸시하지 않는다. 세션이 다른 브랜치에서 시작되면 `git switch jay-study`부터 한다. 어긋나는 git 명령은 `.claude/hooks/branch_guard.ps1`이 막는다.
 - **시뮬레이션**: Gymnasium MuJoCo `HalfCheetah-v5`부터 시작한다. 물리 값은 `env.unwrapped.model.geom_friction`, `env.unwrapped.model.body_mass`로 바꾼다.
 - **실험**: 설정은 `configs/*.yaml`, 시드 3개, 결과는 `results/<실험이름>/`에 그래프·표·GIF로 남긴다. 결과는 평균±표준편차로 보고한다. 학습된 모델과 로그는 커밋하지 않는다.
 - **기록**: 작업을 마치면 `WEEKLY.md` 이번 주 항목에 넣을 한 줄을 제안하고, 내가 동의하면 기록한다.
 - **커밋**: 한국어로 짧게, 단계 접두사를 붙인다. 예: `S1: FashionMNIST 학습 루프`, `P1-M2: 마찰 변화 평가 스크립트`.
-- **공개 범위**: P1 이후 저장소를 공개할 예정이다. `_private/`와 `CLAUDE.local.md`는 커밋하지 않는다 (`.gitignore`에 있음).
+- **공개 범위**: 저장소는 공개 상태이고 컨택 메일에 링크가 나간다. README·WEEKLY는 언제 봐도 정돈된 상태로 둔다. `_private/`와 `CLAUDE.local.md`는 커밋하지 않고(`.gitignore`에 있음), 컨택 대상·현황은 공개 파일에 쓰지 않는다.
 
-## 첫 세션에서 할 일 (S0)
-1. `git init` 후 첫 커밋. 원격 저장소는 내가 GitHub에서 만든 뒤 연결한다.
-2. `nvidia-smi`로 드라이버와 CUDA 버전을 확인하고, https://pytorch.org/get-started/locally/ 에서 맞는 설치 명령(`--index-url`)을 찾는다.
-3. `00_setup\setup_windows.ps1 -TorchIndexUrl <url>` 실행 (가상환경 → CUDA PyTorch → requirements 순서).
-4. `.venv\Scripts\python.exe 00_setup\check_env.py`로 확인한다.
-5. 랜덤 에이전트 GIF는 `00_setup/README.md`의 과제대로 **내가 직접** 작성한다.
+## 첫 세션에서 할 일 (새 PC, S0)
+`00_setup/README.md`의 "새 PC에서 시작하기"와 "설치" 순서대로 진행한다. Claude Code는 설치와 확인까지 맡고, 랜덤 에이전트 GIF는 **내가 직접** 작성한다.
 
 ## 명령
 - `/progress` — 지금 단계, 이번 주 남은 일, 다음 체크포인트

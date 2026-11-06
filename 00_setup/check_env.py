@@ -34,14 +34,14 @@ def main() -> int:
         ok = False
         print("! torch가 설치되지 않았습니다.")
 
-    section("Simulation / RL")
-    for name in ("mujoco", "gymnasium", "stable_baselines3"):
+    section("Packages")
+    for name in ("torchvision", "mujoco", "gymnasium", "stable_baselines3", "Box2D"):
         try:
             module = __import__(name)
             print(name, getattr(module, "__version__", "?"))
         except ImportError:
             ok = False
-            print(f"! {name}가 설치되지 않았습니다.")
+            print(f"! {name} 패키지가 설치되지 않았습니다.")
 
     section("HalfCheetah-v5")
     try:

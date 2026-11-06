@@ -7,6 +7,7 @@
 
 ## 자료
 - PyTorch 공식 튜토리얼 "Learn the Basics" (FashionMNIST 예제): https://pytorch.org/tutorials/beginner/basics/intro.html
+- 수학: 연쇄 법칙 (`math/` 11월). 아래 "설명해 보기" 1번에 필요하다
 
 ## 학습 목표
 - [ ] 라이브러리 도움 없이 학습 루프(순전파 → 손실 → 역전파 → 업데이트)를 직접 작성할 수 있다
@@ -17,6 +18,7 @@
 - [ ] `fashion_mnist.py` (또는 노트북) — 직접 짠 학습 루프, 학습·검증 곡선 그래프
 - [ ] `mlp_regression.py` — 간단한 MLP 회귀 (예: 노이즈 섞인 사인 곡선 맞추기). Project 2의 물리 값 추정기 예행연습
 - [ ] 아래 "설명해 보기"에 대한 내 답
+- [ ] `/quiz` 1회 후 빠진 부분을 "내 답"에 보완
 
 ## 설명해 보기 (면담 대비)
 1. `loss.backward()`를 부르면 무슨 일이 일어나나?

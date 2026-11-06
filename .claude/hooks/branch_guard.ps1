@@ -19,7 +19,11 @@ function Get-Block([string]$Cmd, [scriptblock]$Head) {
         while ($i -lt $t.Count -and $t[$i] -like '-*') { if ($t[$i] -in '-C', '-c') { $i++ }; $i++ }
         if ($i -ge $t.Count) { continue }
         $sub = $t[$i]
-        $rest = @($t | Select-Object -Skip ($i + 1))
+        $rest = @()
+        foreach ($tok in ($t | Select-Object -Skip ($i + 1))) {
+            if ($tok -match '^(\d*[<>]|&>)') { break }  # shell redirection: git's own arguments end here
+            $rest += $tok
+        }
         $pos = @($rest | Where-Object { $_ -notlike '-*' })
 
         if ($sub -in 'checkout', 'switch') {
@@ -79,7 +83,11 @@ if ($SelfTest) {
         @('git push -u origin jay-study', 'jay-study', $false),
         @('git push', 'main', $true),
         @('echo $(git branch --show-current)', 'jay-study', $false),
-        @('ls .git; cat README.md', 'main', $false)
+        @('ls .git; cat README.md', 'main', $false),
+        @('git push origin jay-study 2>&1', 'jay-study', $false),
+        @('git push origin main 2>&1', 'jay-study', $true),
+        @('git branch -a 2>$null', 'jay-study', $false),
+        @('git status > out.txt', 'main', $false)
     )
     $fail = 0
     foreach ($c in $cases) {

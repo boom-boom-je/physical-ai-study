@@ -1,9 +1,19 @@
 # physical-ai-study
 
-시뮬레이션에서 학습한 로봇이 현실의 물리 변화(마찰, 질량, 지형)에 적응하는 문제를 공부하는 저장소입니다.
-PyTorch와 강화학습 기초부터 시작해, MuJoCo에서 물리 값 변화에 대한 정책의 견고성을 측정하고(Project 1), 간단한 적응 모듈을 만드는 것(Project 2)까지 진행합니다.
+피지컬 AI 대학원 진학을 준비하며, 시뮬레이션에서 학습한 로봇이 현실의 물리 변화(마찰·질량·지형)에 적응하는 문제를 공부하는 저장소입니다.
+PyTorch와 강화학습 알고리즘을 직접 구현하며 기초를 쌓고, MuJoCo에서 물리 값 변화에 대한 정책의 견고성을 측정한 뒤(Project 1) 간단한 적응 모듈을 만듭니다(Project 2).
+
+## 연구 관심
+가상 환경에서 학습한 로봇이 현실에 투입된 뒤, 마찰·질량·지형 같은 물리적 특성을 스스로 추정하고 내부의 세계 모델을 빠르게 고쳐 가며 적응하는 문제에 관심이 있습니다.
+
+키워드: Sim-to-Real · Online Adaptation · System Identification · Model-based RL / World Model · Domain Randomization
+
+## 최신 결과
+<!-- 산출물이 나올 때마다 가장 최근 것 하나로 바꾼다: 그림(GIF·그래프) 한 장 + 한 줄 설명 + 해당 폴더 링크 -->
+아직 없습니다. 첫 결과는 HalfCheetah 랜덤 에이전트 GIF(S0)입니다.
 
 ## 진행 현황
+진행 기록은 `jay-study` 브랜치에 쌓이고, `main`은 학습 시작 전 초기 상태입니다.
 
 | 단계 | 내용 | 기간 | 상태 |
 |---|---|---|---|
@@ -21,6 +31,11 @@ PyTorch와 강화학습 기초부터 시작해, MuJoCo에서 물리 값 변화�
 
 상태: ⬜ 시작 전 · 🟨 진행 중 · ✅ 완료
 
+## 원칙
+- 학습 단계의 코드, 연구 질문, 실험 설계, 결과 해석은 직접 합니다. Claude Code는 튜터(개념 질문·힌트·코드 리뷰)와 실험 보조(반복 실행 스크립트·설정 파일·그래프)에만 씁니다. 규칙은 [`CLAUDE.md`](CLAUDE.md)에 있습니다.
+- 실험은 설정 파일, 시드 3개, 평균±표준편차로 기록합니다.
+- 매주 [`WEEKLY.md`](WEEKLY.md)에 한 것 / 막힌 것 / 다음 주 할 것을 남깁니다.
+
 ## 구조
 
 ```
@@ -28,7 +43,8 @@ physical-ai-study/
 ├── CLAUDE.md              Claude Code 작업 규칙 (튜터 모드)
 ├── WEEKLY.md              주간 기록
 ├── requirements.txt
-├── 00_setup/              S0 환경 세팅
+├── .claude/               Claude Code 명령(/progress 등), 브랜치 가드
+├── 00_setup/              S0 환경 세팅 (새 PC에서 시작하는 방법)
 ├── 01_pytorch_basics/     S1
 ├── 02_rl_basics/          S2
 ├── 03_ppo/                S3
@@ -41,11 +57,3 @@ physical-ai-study/
 │   └── p2_adaptation/
 └── docs/learning_guide.md 전체 학습 계획
 ```
-
-## 시작하기
-
-1. Claude Code에서 이 폴더를 연다 (아래 둘 중 하나).
-   - Claude 데스크탑 앱: 설정 → Claude Code → "Use this computer from your phone and claude.ai"를 켜고 이 폴더를 추가한 뒤, 프로젝트 대화에서 **+ → Work locally**로 요청
-   - 터미널: 이 폴더에서 `claude` 실행
-2. 첫 요청: "CLAUDE.md의 첫 세션 체크리스트대로 S0 진행해줘"
-3. 환경 세팅이 끝나면 `00_setup/README.md`의 과제(랜덤 에이전트 GIF)를 직접 작성한다.

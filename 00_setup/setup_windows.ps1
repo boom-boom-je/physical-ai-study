@@ -1,8 +1,9 @@
 # Sets up the Python environment for this repository on Windows.
-#   1) creates .venv (Python 3.11 via the py launcher if available, otherwise "python")
-#   2) installs the CUDA build of PyTorch from the given index URL
+#   1) creates .venv with Python 3.11 (py launcher, or "python" if that is 3.11)
+#   2) installs the CUDA build of PyTorch + torchvision from the given index URL
 #   3) installs requirements.txt
 #   4) runs 00_setup\check_env.py
+#   5) if the check passes, saves exact versions to 00_setup\requirements-lock.txt (commit it)
 #
 # Usage (PowerShell, from the repository root):
 #   powershell -ExecutionPolicy Bypass -File 00_setup\setup_windows.ps1 -TorchIndexUrl https://download.pytorch.org/whl/<cuda-tag>
@@ -32,11 +33,13 @@ if (-not (Test-Path $venvPython)) {
     if (Get-Command py -ErrorAction SilentlyContinue) {
         & py -3.11 -m venv .venv
         if ($LASTEXITCODE -eq 0) { $created = $true }
-        else { Write-Host "Python 3.11 not found via py launcher; falling back to 'python'." }
+        else { Write-Host "Python 3.11 not found via py launcher; trying 'python'." }
     }
     if (-not $created) {
+        $ver = & python -c "import sys; print('%d.%d' % sys.version_info[:2])"
+        if ($ver -ne "3.11") { throw "Python 3.11 is required (found '$ver'). Install it from python.org and retry." }
         & python -m venv .venv
-        if ($LASTEXITCODE -ne 0) { throw "Could not create .venv. Install Python 3.11 from python.org and retry." }
+        if ($LASTEXITCODE -ne 0) { throw "Could not create .venv." }
     }
 }
 
@@ -44,8 +47,8 @@ Write-Host "Upgrading pip ..."
 & $venvPython -m pip install --upgrade pip
 if ($LASTEXITCODE -ne 0) { throw "pip upgrade failed." }
 
-Write-Host "Installing PyTorch (CUDA build) from $TorchIndexUrl ..."
-& $venvPython -m pip install torch --index-url $TorchIndexUrl
+Write-Host "Installing PyTorch + torchvision (CUDA build) from $TorchIndexUrl ..."
+& $venvPython -m pip install torch torchvision --index-url $TorchIndexUrl
 if ($LASTEXITCODE -ne 0) { throw "PyTorch install failed. Check the index URL." }
 
 Write-Host "Installing requirements.txt ..."
@@ -54,3 +57,8 @@ if ($LASTEXITCODE -ne 0) { throw "requirements install failed." }
 
 Write-Host "Checking the environment ..."
 & $venvPython 00_setup\check_env.py
+if ($LASTEXITCODE -eq 0) {
+    $lock = Join-Path $repoRoot "00_setup\requirements-lock.txt"
+    [IO.File]::WriteAllLines($lock, [string[]](& $venvPython -m pip freeze))
+    Write-Host "Saved exact package versions to 00_setup\requirements-lock.txt - commit it."
+}

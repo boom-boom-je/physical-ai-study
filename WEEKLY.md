@@ -7,7 +7,7 @@
 
 ## 2026-W45 (11/2 ~ 11/8) — S0 환경 세팅, S1 시작
 
-- 한 것:
+- 한 것: 데스크탑 환경 설치 완료 (Python 3.11, PyTorch CUDA 12.6, MuJoCo·Gymnasium·SB3), check_env 통과
 - 막힌 것:
 - 다음 주:
 

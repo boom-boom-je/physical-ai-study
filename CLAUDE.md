@@ -36,7 +36,7 @@
 수학(`math/`)과 논문(`papers/`)은 매주 병행하고, 연구실 컨택은 상시 트랙으로 진행한다.
 
 ## 작업 규칙
-- **환경**: 학습·실행은 집 데스크탑(Windows, RTX 3070 Ti 8GB, RAM 32GB)에서 한다. 보조 노트북(NVIDIA GPU 없음)에서는 문서·계획 작업만 하고 설치·학습은 실행하지 않는다. 파이썬은 3.11, 저장소 루트의 `.venv` (`.venv\Scripts\python.exe`). 새 패키지는 `requirements.txt`에 추가한다. PyTorch·torchvision은 CUDA 빌드를 먼저 설치한다 (`00_setup/README.md`).
+- **환경**: 학습·실행은 집 데스크탑(Windows, RTX 3070 Ti 8GB, RAM 16GB)에서 한다. 보조 노트북(NVIDIA GPU 없음)에서는 문서·계획 작업만 하고 설치·학습은 실행하지 않는다. 파이썬은 3.11, 저장소 루트의 `.venv` (`.venv\Scripts\python.exe`). 새 패키지는 `requirements.txt`에 추가한다. PyTorch·torchvision은 CUDA 빌드를 먼저 설치한다 (`00_setup/README.md`).
 - **브랜치**: 모든 작업은 `jay-study`에서 한다. 새 브랜치를 만들거나 다른 브랜치로 전환하지 않는다. `main`은 학습 시작 전 초기 상태를 보관하는 브랜치라 커밋·푸시하지 않는다. 세션이 다른 브랜치에서 시작되면 `git switch jay-study`부터 한다. 어긋나는 git 명령은 `.claude/hooks/branch_guard.ps1`이 막는다.
 - **시뮬레이션**: Gymnasium MuJoCo `HalfCheetah-v5`부터 시작한다. 물리 값은 `env.unwrapped.model.geom_friction`, `env.unwrapped.model.body_mass`로 바꾼다.
 - **실험**: 설정은 `configs/*.yaml`, 시드 3개, 결과는 `results/<실험이름>/`에 그래프·표·GIF로 남긴다. 결과는 평균±표준편차로 보고한다. 학습된 모델과 로그는 커밋하지 않는다.

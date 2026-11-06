@@ -7,9 +7,9 @@
 
 ## 2026-W45 (11/2 ~ 11/8) — S0 환경 세팅, S1 시작
 
-- 한 것: 데스크탑 환경 설치 완료 (Python 3.11, PyTorch CUDA 12.6, MuJoCo·Gymnasium·SB3), check_env 통과
-- 막힌 것:
-- 다음 주:
+- 한 것: 데스크탑 환경 설치 완료 (Python 3.11, PyTorch CUDA 12.6, MuJoCo·Gymnasium·SB3), check_env 통과. `random_agent.py` 1단계 — Gymnasium 예제를 HalfCheetah로 옮겨 랜덤 에이전트 1 에피소드(1000스텝, 보상 약 -230~-290) 실행. 헷갈렸던 개념을 `00_setup/notes.md`에 Q&A 11개로 정리 (스텝·에피소드, terminated·truncated, 연속 행동 공간, 보상 구성)
+- 막힌 것: 공식 문서에서 어느 페이지를 보고 예제를 어떻게 내 환경에 맞게 바꿔야 하나? (커스텀 환경 템플릿을 잘못 실행했고, CartPole 주석을 그대로 둠) / 랜덤 에이전트 보상이 왜 약 -200이 되는지 ctrl_cost를 식으로 계산하는 데 막힘 → notes.md Q1·Q10에 정리
+- 다음 주: S0 마무리 (300스텝 GIF, README 질문 4개 답) → S1 FashionMNIST 학습 루프·MLP 회귀 직접 작성 (11/15 체크포인트), 선형대수 노트 시작, 컨택 연구실 논문 1회차 읽기
 
 ---
 

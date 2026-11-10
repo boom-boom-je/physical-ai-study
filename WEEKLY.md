@@ -5,6 +5,14 @@
 
 ---
 
+## 2026-W46 (11/9 ~ 11/15) — S0 마무리, S1 PyTorch 기초
+
+- 한 것: S0 완료. `random_agent.py`(무작위 행동 300스텝, 추적 카메라, 시드 고정)로 랜덤 에이전트 GIF를 만들고, README 질문 4개(관측·행동·보상·`body_mass`)에 답한 뒤 면담 대비 퀴즈로 점검. 공부하며 확인한 개념을 `00_setup/notes.md`에 Q&A 36개로 정리 (보상 계산, terminated·truncated, 질량 변화의 영향, 시드와 재현성)
+- 막힌 것: Gymnasium 1.4에서 HalfCheetah 기본 카메라가 시작 위치에 고정돼 치타가 화면 밖으로 나가는 이유는? (모델에 들어 있는 `track` 카메라로 해결, notes Q27)
+- 다음 주: S2 강화학습 기초 시작, P1-M1 기준 정책(HalfCheetah + SB3 PPO, 시드 3개) 학습 시작 (11/16~)
+
+---
+
 ## 2026-W45 (11/2 ~ 11/8) — S0 환경 세팅, S1 시작
 
 - 한 것: 데스크탑 환경 설치 완료 (Python 3.11, PyTorch CUDA 12.6, MuJoCo·Gymnasium·SB3), check_env 통과. `random_agent.py` 1단계 — Gymnasium 예제를 HalfCheetah로 옮겨 랜덤 에이전트 1 에피소드(1000스텝, 보상 약 -230~-290) 실행. 헷갈렸던 개념을 `00_setup/notes.md`에 Q&A 11개로 정리 (스텝·에피소드, terminated·truncated, 연속 행동 공간, 보상 구성)

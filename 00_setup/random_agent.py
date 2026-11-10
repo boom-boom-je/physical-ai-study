@@ -5,7 +5,7 @@ import imageio
 # 환경 생성
 # "HalfCheetah-v5": 어떤 환경을 만들지
 # render_mode; 어떻게 보여줄지
-env = gym.make("HalfCheetah-v5", render_mode="rgb_array")
+env = gym.make("HalfCheetah-v5", render_mode="rgb_array", camera_name="track", width=320, height=320)
 
 # 환경 리셋
 observation, info = env.reset()
@@ -54,7 +54,7 @@ for i in range(300):
 
 print("len:", len(frames))
 print("shape:", frames[-1].shape)
-imageio.mimread(...)
+imageio.mimsave("00_setup/random_agent.gif", frames, duration=50, loop=0)
 
 # 종료
 print("반복횟수:", i)

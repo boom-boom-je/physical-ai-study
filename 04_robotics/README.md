@@ -18,6 +18,7 @@
 - [ ] `two_link_fk.py` — 2링크 팔 순기구학, MuJoCo 시뮬레이션 결과와 비교
 - [ ] `mjcf_physics_notes.md` — HalfCheetah MJCF의 물리 파라미터 정리 (Project 1·2에서 바꾸는 값과 연결)
 - [ ] `/quiz` 1회 후 빠진 부분을 아래에 보완
+- [ ] `KEYWORD.md`: S4 핵심 개념 정리 (면담·복습용)
 
 ## 내 답·메모
 <!-- 여기에 적기 -->

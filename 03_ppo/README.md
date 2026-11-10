@@ -21,6 +21,7 @@ Actor-Critic, 어드밴티지(Advantage), GAE, PPO의 클리핑 목적함수, �
 - [ ] SB3 PPO와의 학습 곡선 비교 그래프 (`results/`)
 - [ ] `ppo_one_page.md` — PPO 한 페이지 설명 (면담용)
 - [ ] `/quiz` 1회 후 빠진 부분을 "내 답"에 보완
+- [ ] `KEYWORD.md`: S3 핵심 개념 정리 (면담·복습용)
 
 일정이 밀리면 연속 행동 확장은 1월 초로 넘긴다 (Project 1 우선).
 

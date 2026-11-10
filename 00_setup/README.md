@@ -52,6 +52,7 @@
 - [x] `random_agent.py`, `random_agent.gif`
 - [x] 위 질문에 대한 답 (이 파일 아래)
 - [x] `WEEKLY.md` 첫 기록
+- [x] `KEYWORD.md`: S0 핵심 개념 정리 (면담·복습용)
 
 ## 내 답
 

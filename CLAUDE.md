@@ -1,13 +1,13 @@
 # physical-ai-study
 
 피지컬 AI 대학원 진학을 준비하며 쌓는 학습·프로젝트 저장소다. 연구실 프리랩·인턴 컨택과 병행하고, 진행 기록은 그대로 컨택 메일과 면담 자료가 된다.
-개인 배경과 일정은 `CLAUDE.local.md`, 컨택 대상·현황은 `_private/contacts.md`에 있다 (둘 다 커밋하지 않음).
+개인 배경과 일정은 `CLAUDE.local.md`에 있다. 연구실 후보 조사는 `_private/전체 연구실 리스트.xlsx`, 연락 중인 곳의 현황과 메일 체크리스트는 `_private/contacts.md`에 있다 (모두 커밋하지 않음).
 
 ## 연구 방향 (모든 작업의 기준)
 가상 환경에서 학습한 로봇이 현실에 투입된 뒤, 마찰·질량·지형 같은 물리적 특성을 스스로 추정하고 내부의 세계 모델을 빠르게 고쳐가며 적응하는 연구.
 키워드: Sim-to-Real, Online Adaptation (RMA), System Identification, Model-based RL / World Model, Domain Randomization.
 
-계획에서 다루는 범위: 물리 값 견고성(P1) → 물리 값 추정·적응(P2) → 거친 지형 보행(S5). 세계 모델은 1월 말까지 논문으로 먼저 다루고, 그 뒤 P2에 작은 마일스톤(M5)으로 추가한다.
+계획에서 다루는 범위: 물리 값 견고성(P1) → 물리 값 추정·적응(P2) → 거친 지형 보행(S5). 세계 모델은 1월 말까지 논문으로 먼저 다루고, 그 뒤 P2에 작은 마일스톤(M5)으로 추가한다. 실물 로봇은 프리랩이 확정된 뒤 P3(조건부)에서 다룬다.
 
 ## 가장 중요한 규칙: 튜터 모드
 이 저장소의 목적은 결과물이 아니라 **내가 할 수 있게 되는 것**이다. 면담에서 내 코드를 직접 설명할 수 있어야 한다.
@@ -34,12 +34,13 @@
 | S5 Isaac Lab | `05_isaaclab/` | 2월 | 보행 정책 영상(평지·거친 지형), 랜덤화 전후 비교 |
 | P1 물리 값 견고성 | `projects/p1_physics_robustness/` | 11/16~12/31 | 히트맵, 도메인 랜덤화 비교, 결과 README |
 | P2 적응 모듈 | `projects/p2_adaptation/` | 1~2월 | 4개 정책 비교, 4쪽 보고서, (추가 예정) M5 세계 모델 |
+| P3 하드웨어 (조건부) | 결정되면 `projects/p3_hardware/` | 프리랩 확정 후 | 실물·시뮬레이션 궤적 비교, 마찰·감쇠 값 맞추기 |
 
 수학(`math/`)과 논문(`papers/`)은 매주 병행하고, 연구실 컨택은 상시 트랙으로 진행한다.
 
 ## 작업 규칙
 - **환경**: 학습·실행은 집 데스크탑(Windows, RTX 3070 Ti 8GB, RAM 16GB)에서 한다. 보조 노트북(NVIDIA GPU 없음)에서는 문서·계획 작업만 하고 설치·학습은 실행하지 않는다. 파이썬은 3.11, 저장소 루트의 `.venv` (`.venv\Scripts\python.exe`). 새 패키지는 `requirements.txt`에 추가한다. PyTorch·torchvision은 CUDA 빌드를 먼저 설치한다 (`00_setup/README.md`).
-- **브랜치**: 모든 작업은 `jay-study`에서 한다. 새 브랜치를 만들거나 다른 브랜치로 전환하지 않는다. `main`은 학습 시작 전 초기 상태를 보관하는 브랜치라 커밋·푸시하지 않는다. 세션이 다른 브랜치에서 시작되면 `git switch jay-study`부터 한다. 어긋나는 git 명령은 `.claude/hooks/branch_guard.ps1`이 막는다.
+- **브랜치**: 모든 작업은 `jay-study`에서 한다. 새 브랜치를 만들거나 다른 브랜치로 전환하지 않는다. `main`은 학습 시작 전 초기 상태를 보관하는 브랜치라 커밋·푸시하지 않는다. 세션이 다른 브랜치에서 시작되면 `git switch jay-study`부터 한다. 두 PC가 같은 브랜치를 쓰므로 작업을 시작할 때 `git pull`로 최신 상태를 받는다. 어긋나는 git 명령은 `.claude/hooks/branch_guard.ps1`이 막는다.
 - **시뮬레이션**: Gymnasium MuJoCo `HalfCheetah-v5`부터 시작한다. 물리 값은 `env.unwrapped.model.geom_friction`, `env.unwrapped.model.body_mass`로 바꾼다.
 - **실험**: 설정은 `configs/*.yaml`, 시드 3개, 결과는 `results/<실험이름>/`에 그래프·표·GIF로 남긴다. 결과는 평균±표준편차로 보고한다. 학습된 모델과 로그는 커밋하지 않는다.
 - **기록**: 작업을 마치면 `WEEKLY.md` 이번 주 항목에 넣을 한 줄을 제안하고, 내가 동의하면 기록한다.

@@ -15,6 +15,7 @@
 - [ ] `torch.cuda.is_available()`이 `True`로 나오는 환경을 직접 구성할 수 있다
 - [x] Gymnasium 환경을 만들고 `reset`·`step` 루프를 돌릴 수 있다
 - [x] HalfCheetah를 예로 관측·행동·보상이 각각 무엇인지 설명할 수 있다
+- [ ] Git으로 clone·pull·commit·push를 직접 할 수 있다 (PC 두 대에서 같은 브랜치를 쓰므로 작업 전 `pull`, 끝나면 `push`)
 
 ## 설치 (Claude Code에 맡겨도 되는 부분)
 1. `nvidia-smi`로 드라이버가 지원하는 CUDA 버전을 확인한다 (오른쪽 위 `CUDA Version`).
